@@ -1,0 +1,16 @@
+.header {
+    display: flex;
+    position: relative;
+    font-family: 'Playfair Display', serif;
+    width: 100%;
+    color: black;
+    background-color: rgb(238, 216, 20);
+    height: 100px;
+}
+
+.header .h2 {
+    margin-left: 30px;
+    margin-top: 20px;
+    display: flex;
+    position: relative;
+}
