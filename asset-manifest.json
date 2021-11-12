@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/spa-app-currency-conversion/static/css/main.0f015637.chunk.css",
+    "main.js": "/spa-app-currency-conversion/static/js/main.9ceae0a9.chunk.js",
+    "main.js.map": "/spa-app-currency-conversion/static/js/main.9ceae0a9.chunk.js.map",
+    "runtime-main.js": "/spa-app-currency-conversion/static/js/runtime-main.792387d9.js",
+    "runtime-main.js.map": "/spa-app-currency-conversion/static/js/runtime-main.792387d9.js.map",
+    "static/js/2.b3aca46e.chunk.js": "/spa-app-currency-conversion/static/js/2.b3aca46e.chunk.js",
+    "static/js/2.b3aca46e.chunk.js.map": "/spa-app-currency-conversion/static/js/2.b3aca46e.chunk.js.map",
+    "index.html": "/spa-app-currency-conversion/index.html",
+    "static/css/main.0f015637.chunk.css.map": "/spa-app-currency-conversion/static/css/main.0f015637.chunk.css.map",
+    "static/js/2.b3aca46e.chunk.js.LICENSE.txt": "/spa-app-currency-conversion/static/js/2.b3aca46e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.792387d9.js",
+    "static/js/2.b3aca46e.chunk.js",
+    "static/css/main.0f015637.chunk.css",
+    "static/js/main.9ceae0a9.chunk.js"
+  ]
+}
