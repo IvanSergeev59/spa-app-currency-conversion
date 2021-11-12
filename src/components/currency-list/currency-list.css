@@ -12,7 +12,7 @@
 }
 .result-field {
     display: block;
-    width: 10%;
+    width: 15%;
     height: calc(1.5em + .75rem + 2px);
     padding: .375rem .75rem;
     font-size: 1rem;
@@ -27,5 +27,16 @@
 }
 
 .form-control {
-    width: 10%;
+    width: 15%;
+}
+
+.currency-list-user {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+}
+
+.currency-list-_p {
+    margin-bottom: 0px;
+    margin-right: 10px;
 }

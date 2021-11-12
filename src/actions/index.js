@@ -1,13 +1,15 @@
-const variant1 = () => {
+const sumTotal = (item) => {
     return {
-        type: 'NAME_1'
+        type: 'SUM_TOTAL',
+        payload: item
     }
 }
 
-const variant2 = () => {
+const changeCurrency = (item) => {
     return {
-        type: 'NAME_2'
+        type: 'CHANGE_CURRENCY',
+        payload: item
     }
 }
 
-export {variant1, variant2}
+export {sumTotal, changeCurrency}

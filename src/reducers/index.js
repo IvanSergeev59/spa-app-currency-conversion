@@ -1,17 +1,24 @@
 const initialState = {
-    currentUsd:'30',
-    totalUsd: '0'
+    currentUsd:'70',
+    totalUsd: '0',
+    sumUsd: '0',
+    currentEURO: '90',
+    currentRUB: '1',
+    userCurrency: 'USD'
 }
 
 const reducer = (state=initialState, action) => {
     switch (action.type) {
-        case 'NAME_1':
+        case 'SUM_TOTAL':
             return {
-               ...state
+               ...state,
+               totalUsd: action.payload
             };
-        case 'NAME_2':
+
+        case 'CHANGE_CURRENCY':
             return {
-                ...state
+                ...state,
+                userCurrency: action.payload
             }
         default: return {...state}
     }
