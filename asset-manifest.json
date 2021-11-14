@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/spa-app-currency-conversion/static/css/main.ba19c396.chunk.css",
-    "main.js": "/spa-app-currency-conversion/static/js/main.cb227b57.chunk.js",
-    "main.js.map": "/spa-app-currency-conversion/static/js/main.cb227b57.chunk.js.map",
+    "main.css": "/spa-app-currency-conversion/static/css/main.4035adc8.chunk.css",
+    "main.js": "/spa-app-currency-conversion/static/js/main.d17c2359.chunk.js",
+    "main.js.map": "/spa-app-currency-conversion/static/js/main.d17c2359.chunk.js.map",
     "runtime-main.js": "/spa-app-currency-conversion/static/js/runtime-main.792387d9.js",
     "runtime-main.js.map": "/spa-app-currency-conversion/static/js/runtime-main.792387d9.js.map",
-    "static/js/2.f09ee04c.chunk.js": "/spa-app-currency-conversion/static/js/2.f09ee04c.chunk.js",
-    "static/js/2.f09ee04c.chunk.js.map": "/spa-app-currency-conversion/static/js/2.f09ee04c.chunk.js.map",
+    "static/js/2.d2afd5dc.chunk.js": "/spa-app-currency-conversion/static/js/2.d2afd5dc.chunk.js",
+    "static/js/2.d2afd5dc.chunk.js.map": "/spa-app-currency-conversion/static/js/2.d2afd5dc.chunk.js.map",
     "index.html": "/spa-app-currency-conversion/index.html",
-    "static/css/main.ba19c396.chunk.css.map": "/spa-app-currency-conversion/static/css/main.ba19c396.chunk.css.map",
-    "static/js/2.f09ee04c.chunk.js.LICENSE.txt": "/spa-app-currency-conversion/static/js/2.f09ee04c.chunk.js.LICENSE.txt"
+    "static/css/main.4035adc8.chunk.css.map": "/spa-app-currency-conversion/static/css/main.4035adc8.chunk.css.map",
+    "static/js/2.d2afd5dc.chunk.js.LICENSE.txt": "/spa-app-currency-conversion/static/js/2.d2afd5dc.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.792387d9.js",
-    "static/js/2.f09ee04c.chunk.js",
-    "static/css/main.ba19c396.chunk.css",
-    "static/js/main.cb227b57.chunk.js"
+    "static/js/2.d2afd5dc.chunk.js",
+    "static/css/main.4035adc8.chunk.css",
+    "static/js/main.d17c2359.chunk.js"
   ]
 }
