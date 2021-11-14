@@ -1,24 +1,22 @@
 import { React } from "react";
-import Navbar from 'react-bootstrap/Navbar'
-import { Container } from "react-bootstrap";
-import { Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import "./header.css"
 const Header = () => {    
     return (
-        <header className="header">
-            <Navbar bg="primary" variant="dark">
-            <Container>
-            <Navbar.Brand href="/">Конвертер валют</Navbar.Brand>
-            <Nav className="me-auto">
-              <Nav.Link href="/">Главная</Nav.Link>
-              <Nav.Link href="/current-exchange-rate/">Актуальный курс валют</Nav.Link>
-            </Nav>
-            </Container>
-          </Navbar>
-                        
+        <header className="header">  
+            <h3 className="header__h3">          
+                <Link className="header__a" to="/">Конвертер валют</Link>
+            </h3>
+            <div className="header__container">
+                <Link  className="header__a" to="/">Главная</Link>
+                <Link  className="header__a" to="/current-exchange-rate/">Курс валют</Link>    
+            </div>                 
         </header>
+        
     )
     
 }
 
 
 export default Header
+

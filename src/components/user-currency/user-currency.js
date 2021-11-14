@@ -7,8 +7,7 @@ import { changeCurrency} from "../../actions";
 
  const UserCurrency = ({userChangeCurrency}) => {     
     const onUserChangeCurrency = (event) => {
-        const item = event.target.value;    
-            
+        const item = event.target.value;        
         return userChangeCurrency(item)
     }
         return (

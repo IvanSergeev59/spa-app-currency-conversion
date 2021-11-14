@@ -3,14 +3,59 @@
     position: relative;
     font-family: 'Playfair Display', serif;
     width: 100%;
-    color: black;
-    background-color: rgb(238, 216, 20);
     height: 100px;
-}
+    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #0d6efd;
 
-.header .h2 {
-    margin-left: 30px;
-    margin-top: 20px;
+}
+.header__a {
+    color:white;
     display: flex;
     position: relative;
+    margin-left: 20px;
+    margin-right: 30px;
+    text-decoration: none;
+}
+
+
+.header__h3 {
+    color:white;
+    margin-left: 30px;
+    margin-top: 30px;
+    display: flex;
+    position: relative;
+}
+
+.header__container {
+    display: flex;
+    position: relative;
+    margin-top: 35px;
+    margin-right: 20px;
+    font-size: 1.2rem;
+
+}
+
+@media (max-width: 768px) {
+    
+    .header__h3 {        
+        margin-left: 20px;
+        margin-top: 20px;      
+    }
+    .header__container {
+        display: flex;
+        position: relative;
+        margin-top: 25px;
+        margin-right: 10px;
+        font-size: 1.2rem;
+    
+    }    
+    .header {     
+        height: 80px;    
+    }
+    .header__a {      
+        margin-left: 0px;
+        margin-right: 20px;
+    }
 }

@@ -3,59 +3,52 @@ import { Form} from "react-bootstrap";
 import { connect } from "react-redux";
 import './currency-list.css';
 import { sumTotal } from "../../actions";
+import store from "../../store";
 
 
-const CurrencyList = ( {currentUsd, totalUsd, sumTotalUsd, sumUsd, userCurrency}) => {     
-    const insertTotal = (event) => {        
+const CurrencyList = ( {sumTotalUsd, userSumInputMoney, userCurrency, exchangeCurrency_1, exchangeCurrency_2, userSumInputMoney_1, userSumInputMoney_2}) => {     
+       
+    const insertTotal = (event) => {       
         const item =event.target.value;
+        
         return sumTotalUsd(item)
     }
     return (     
         <div className="currency-list">
             <div className="form" >
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>{userCurrency} in RUB</Form.Label>
+                <Form.Group className="mb-3">
+                    <Form.Label>Количество</Form.Label>                   
                     <Form.Control
-                    onChange={insertTotal} type="number" placeholder="Введите количество" required pattern="[0-9]{5,10}"/>
+                    onChange={insertTotal} id="1" type="number" placeholder="Введите количество" />
                    
                 </Form.Group>
-                
+            <p className="result-block">{userCurrency} in {exchangeCurrency_1}:</p>
+            <p className="result-field">{userSumInputMoney_1}</p>                
             </div>
-            <p className="result-block">Итого:</p>
-            <p className="result-field">{sumUsd}</p>
+            <p className="result-block">{userCurrency} in {exchangeCurrency_2}:</p>
+            <p className="result-field">{userSumInputMoney_2}</p>
         </div>
     )
 }
 
-class CurrencyListContainer extends Component {   
-    
-    
-    render () {
-        const {sumTotalUsd, sumUsd, userCurrency} = this.props
+class CurrencyListContainer extends Component {      
+   
+    render () {   
+     
+        const {sumTotalUsd,  userCurrency, exchangeCurrency_1, exchangeCurrency_2, userSumInputMoney_1, userSumInputMoney_2} = this.props
+       
         return (                
-                <CurrencyList sumUsd={sumUsd} sumTotalUsd={sumTotalUsd} userCurrency={userCurrency}/>
-           
+                <CurrencyList sumTotalUsd={sumTotalUsd} 
+                exchangeCurrency_1={exchangeCurrency_1} exchangeCurrency_2={exchangeCurrency_2} userCurrency={userCurrency}
+                userSumInputMoney_1={userSumInputMoney_1} userSumInputMoney_2={userSumInputMoney_2}/>           
         )
     }
 }
 
-const mapStateToProps = ({currentCurrencies: {currentUsd, currentRUB, totalUsd, userCurrency, currentEURO}}) => {
-    let sumUsd = 0;
-    switch (userCurrency) {
-        case 'USD':
-            sumUsd = (currentUsd*totalUsd).toFixed(2);
-            break
-        case 'EURO':
-             sumUsd = (currentEURO*totalUsd).toFixed(2);
-             break
-        case 'RUB':
-             sumUsd = (currentRUB*totalUsd).toFixed(2);
-             break
-        default:
-            sumUsd = 0
-    }
+const mapStateToProps = ({currentCurrencies: {userSumInputMoney_1, userSumInputMoney_2, userCurrency, exchangeCurrency_1
+, exchangeCurrency_2}}) => {
     
-    return {sumUsd, userCurrency}
+    return {userSumInputMoney_1, userSumInputMoney_2, userCurrency, exchangeCurrency_1, exchangeCurrency_2}
 } 
 
 const mapDispatchToProps = (dispatch, action) => {

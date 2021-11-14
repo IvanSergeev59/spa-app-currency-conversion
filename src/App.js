@@ -30,7 +30,7 @@ class App extends Component  {
           <UserCurrencyContainer />
           <Routes>
             <Route path="/spa-app-currency-conversion/" element={<HomePage />} />
-            <Route path="/" element={<HomePage />} />
+            <Route path="/*" element={<HomePage />} />
             <Route path="/current-exchange-rate/" element={<CurrentCurrencies />} />  
           </Routes>
 
