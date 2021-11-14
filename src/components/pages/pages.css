@@ -1,5 +1,5 @@
 .pages {
-    margin-left: 20px;
+    margin-left: 60px;
 }
 
 .pages__h3 {
@@ -9,7 +9,7 @@
 .pages__currency-window {
     width: 20%;
     border: 1px solid gray;
-    margin-left: 20px;
+    margin-left: 60px;
     display: flex;
     position: relative;
     flex-direction: row;
@@ -18,4 +18,19 @@
 
 .pages__currency-window_p {
     margin: 3px
+}
+
+@media (max-width: 768px) {
+    .pages__currency-window {
+        width: 50%;
+        border: 1px solid gray;
+        margin-left: 20px;
+        display: flex;
+        position: relative;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .pages {
+        margin-left: 20px;
+    }
 }

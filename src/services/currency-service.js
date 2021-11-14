@@ -18,8 +18,8 @@ export default class CurrencyService {
     getCurrencies = async () => {
         const res = await this.getCurrency()
         const valutes = {
-          usd:res.Valute.USD.Value,
-          euro: res.Valute.EUR.Value
+          currentUsdToRub:res.Valute.USD.Value,
+          currentEuroToRub: res.Valute.EUR.Value
         }
        
         return valutes

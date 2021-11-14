@@ -16,7 +16,7 @@ const CurrencyList = ( {currentUsd, totalUsd, sumTotalUsd, sumUsd, userCurrency}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>{userCurrency} in RUB</Form.Label>
                     <Form.Control
-                    onChange={insertTotal} type="number" placeholder="Введите количество" />
+                    onChange={insertTotal} type="number" placeholder="Введите количество" required pattern="[0-9]{5,10}"/>
                    
                 </Form.Group>
                 
@@ -54,7 +54,7 @@ const mapStateToProps = ({currentCurrencies: {currentUsd, currentRUB, totalUsd, 
         default:
             sumUsd = 0
     }
-    console.log(sumUsd)
+    
     return {sumUsd, userCurrency}
 } 
 
