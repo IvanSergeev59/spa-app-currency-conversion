@@ -1,18 +1,16 @@
-import {React, Component, Fragment} from "react";
+import {React, Component} from "react";
 import { Form} from "react-bootstrap";
 import { connect } from "react-redux";
 import './currency-list.css';
-import { sumTotal, changeCurrency } from "../../actions";
+import { sumTotal } from "../../actions";
 
-const CurrencyList = ( {currentUsd, totalUsd, sumTotalUsd, sumUsd, userCurrency}) => { 
+
+const CurrencyList = ( {currentUsd, totalUsd, sumTotalUsd, sumUsd, userCurrency}) => {     
     const insertTotal = (event) => {        
         const item =event.target.value;
         return sumTotalUsd(item)
     }
-
-
-    return (        
-
+    return (     
         <div className="currency-list">
             <div className="form" >
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -23,69 +21,46 @@ const CurrencyList = ( {currentUsd, totalUsd, sumTotalUsd, sumUsd, userCurrency}
                 </Form.Group>
                 
             </div>
-            <p className="result-block">Result:</p>
+            <p className="result-block">Итого:</p>
             <p className="result-field">{sumUsd}</p>
         </div>
     )
 }
 
-
-const UserCurrency = ({userChangeCurrency}) => {
-    const ololo = (event) => {
-        const item = event.target.value;
-        console.log(item)
-        return userChangeCurrency(item)
-    }
-        return (
-          <div class="currency-list currency-list-user">
-            <p class="currency-list-_p" >Ваша валюта:</p>
-            <Form.Select
-            onChange = {ololo} aria-label="Default select example">
-              
-                <option value="USD">USD</option>
-                <option value="EURO">EURO</option>
-                <option value="RUB">RUB</option>
-            </Form.Select>
-          </div>
-        )
-}
-
 class CurrencyListContainer extends Component {   
-
+    
+    
     render () {
-        const {sumTotalUsd, sumUsd, userCurrency, userChangeCurrency} = this.props
-        return (
-            <Fragment>
-                <UserCurrency userChangeCurrency={userChangeCurrency}/>
+        const {sumTotalUsd, sumUsd, userCurrency} = this.props
+        return (                
                 <CurrencyList sumUsd={sumUsd} sumTotalUsd={sumTotalUsd} userCurrency={userCurrency}/>
-            </Fragment>
+           
         )
     }
 }
 
-const mapStateToProps = ({currentUsd, currentRUB, totalUsd, userCurrency, currentEURO}) => {
+const mapStateToProps = ({currentCurrencies: {currentUsd, currentRUB, totalUsd, userCurrency, currentEURO}}) => {
     let sumUsd = 0;
     switch (userCurrency) {
         case 'USD':
-            sumUsd = currentUsd*totalUsd;
+            sumUsd = (currentUsd*totalUsd).toFixed(2);
             break
         case 'EURO':
-             sumUsd = currentEURO*totalUsd;
+             sumUsd = (currentEURO*totalUsd).toFixed(2);
              break
         case 'RUB':
-             sumUsd = currentRUB*totalUsd;
+             sumUsd = (currentRUB*totalUsd).toFixed(2);
              break
         default:
             sumUsd = 0
     }
-
+    console.log(sumUsd)
     return {sumUsd, userCurrency}
 } 
 
 const mapDispatchToProps = (dispatch, action) => {
     return {
-        sumTotalUsd: (item) => dispatch(sumTotal(item)),
-        userChangeCurrency: (item) => dispatch(changeCurrency(item))
+        sumTotalUsd: (item) => dispatch(sumTotal(item))
     }
 }
 

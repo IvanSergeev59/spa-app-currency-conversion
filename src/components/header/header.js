@@ -1,7 +1,5 @@
-import { React, Component } from "react";
-import {connect} from 'react-redux';
-import {variant2} from '../../actions'
-import Button from 'react-bootstrap/Button';
+import { React } from "react";
+
 import './header.css'
 
 const Header = () => {    

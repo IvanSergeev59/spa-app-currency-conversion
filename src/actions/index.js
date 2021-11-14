@@ -12,4 +12,12 @@ const changeCurrency = (item) => {
     }
 }
 
-export {sumTotal, changeCurrency}
+const updateCurrency = (item) => {
+   
+    return {
+        type: 'UPDATE_CURRENCY',
+        payload: item
+    }
+}
+
+export {sumTotal, changeCurrency, updateCurrency}
