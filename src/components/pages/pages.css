@@ -35,4 +35,7 @@
     .pages {
         margin-left: 20px;
     }
+    .pages__h3 {
+       font-size: 1.2rem;
+    }
 }

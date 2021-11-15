@@ -2,12 +2,14 @@ import {React, Component} from "react";
 import { Form} from "react-bootstrap";
 import { connect } from "react-redux";
 import './currency-list.css';
-import { sumTotal } from "../../actions";
-import store from "../../store";
+import { sumTotal} from "../../actions";
 
 
-const CurrencyList = ( {sumTotalUsd, errorUserWrongInput, userSumInputMoney, userCurrency, exchangeCurrency_1, exchangeCurrency_2, userSumInputMoney_1, userSumInputMoney_2}) => {     
-       
+
+const CurrencyList = ( {sumTotalUsd, currentCurrencies}) => {     
+    const {errorUserWrongInput,exchangeCurrency_1, 
+        userCurrency, exchangeCurrency_2, userSumInputMoney_2, userSumInputMoney_1 } = currentCurrencies
+ 
     const insertTotal = (event) => {       
         const item =event.target.value;
         
@@ -33,28 +35,24 @@ const CurrencyList = ( {sumTotalUsd, errorUserWrongInput, userSumInputMoney, use
 }
 
 class CurrencyListContainer extends Component {      
-   
+  
     render () {   
      
-        const {sumTotalUsd,  userCurrency, exchangeCurrency_1, exchangeCurrency_2, userSumInputMoney_1, errorUserWrongInput, userSumInputMoney_2} = this.props
-       
+        const {sumTotalUsd, currentCurrencies} = this.props
         return (                
-                <CurrencyList sumTotalUsd={sumTotalUsd} errorUserWrongInput={errorUserWrongInput}
-                exchangeCurrency_1={exchangeCurrency_1} exchangeCurrency_2={exchangeCurrency_2} userCurrency={userCurrency}
-                userSumInputMoney_1={userSumInputMoney_1} userSumInputMoney_2={userSumInputMoney_2}/>           
+                <CurrencyList sumTotalUsd={sumTotalUsd} currentCurrencies={currentCurrencies}/>           
         )
     }
 }
 
-const mapStateToProps = ({currentCurrencies: {errorUserWrongInput, userSumInputMoney_1, userSumInputMoney_2, userCurrency, exchangeCurrency_1
-, exchangeCurrency_2}}) => {
-    
-    return {userSumInputMoney_1, userSumInputMoney_2, errorUserWrongInput, userCurrency, exchangeCurrency_1, exchangeCurrency_2}
+const mapStateToProps = ({currentCurrencies}) => {
+    return {currentCurrencies}
 } 
 
-const mapDispatchToProps = (dispatch, action) => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        sumTotalUsd: (item) => dispatch(sumTotal(item))
+        sumTotalUsd: (item) => dispatch(sumTotal(item)),
+        
     }
 }
 

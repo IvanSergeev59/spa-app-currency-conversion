@@ -1,3 +1,9 @@
+const currenciesRequested = () => {
+    return {
+        type: 'CURRENCIES_REQUESTED'
+    }
+}
+
 const sumTotal = (item) => {
     return {
         type: 'SUM_TOTAL',
@@ -20,4 +26,11 @@ const updateCurrency = (item) => {
     }
 }
 
-export {sumTotal, changeCurrency, updateCurrency}
+const fetchCurrencies = (currencyService) => () => (dispatch) => {  
+    dispatch(currenciesRequested());
+    currencyService.getCurrencies()
+    .then((data) => dispatch(updateCurrency(data)))
+    .catch()
+}
+
+export {sumTotal, changeCurrency, updateCurrency, fetchCurrencies}

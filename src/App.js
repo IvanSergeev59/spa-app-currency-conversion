@@ -2,28 +2,25 @@ import {React, Component} from "react";
 import Header from "./components/header";
 import {HomePage, CurrentCurrencies} from "./components/pages";
 import UserCurrencyContainer from "./components/user-currency"
-import CurrencyService from "./services";
-import {updateCurrency} from "./actions";
-import {connect} from 'react-redux'
 import { Routes, Route } from "react-router";
+import withCurrencyService from "./hoc";
+import { connect } from "react-redux";
+import compose from "./utils.js";
+import { fetchCurrencies } from "./actions";
 
-class App extends Component  {
-  currencyService = new CurrencyService()
-
-
-  loadingCurrentCurrency = () => {
-    this.currencyService
-    .getCurrencies()
-    .then(this.props.onLoadCurrentCurrency)
-    .catch()
+class App  extends Component {
+  componentDidMount() {
+    this.props.fetchCurrencies()
   }
 
- componentDidMount(){
-   this.loadingCurrentCurrency()
- }
+  // loadingCurrentCurrency = () => {
+  //   this.currencyService
+  //   .getCurrencies()
+  //   .then(this.props.onLoadCurrentCurrency)
+  //   .catch()
+  // }
 
-  render () 
-  {
+  render () {
     return (
       <div className="App">        
           <Header />
@@ -36,15 +33,29 @@ class App extends Component  {
 
       </div>
     );
+  
   }
 }
+// const mapStateToProps = (state) => {
+//   return state
+// } 
+
+// const mapDispatchToProps = (dispatch, action) => {
+//   return {
+//     onLoadCurrentCurrency: (item) => dispatch(updateCurrency(item))
+//   }
+// }
+
 const mapStateToProps = (state) => {
   return state
-} 
-
-const mapDispatchToProps = (dispatch, action) => {
-  return {
-    onLoadCurrentCurrency: (item) => dispatch(updateCurrency(item))
-  }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+const mapDispatchToProps =(dispatch, ownProps) => {
+    const {currencyService} = ownProps
+    return {
+      fetchCurrencies: () => dispatch(fetchCurrencies(currencyService)())
+    }
+}
+export default compose( 
+  withCurrencyService(),
+connect(mapStateToProps, mapDispatchToProps))(App)

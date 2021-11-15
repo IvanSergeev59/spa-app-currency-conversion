@@ -4,12 +4,18 @@ import App from './app';
 import { Provider } from "react-redux";
 import { BrowserRouter as Router} from "react-router-dom";
 import store from './store';
+import CurrencyService from './services';
+import { CurrencyServiceProvider } from './components/currency-service-context';
+
+const currencyService = new CurrencyService();
 
 ReactDOM.render(
   <Provider store={store}>
+    <CurrencyServiceProvider value={currencyService}>
     <Router>
       <App />
     </Router>
+    </CurrencyServiceProvider>
   </Provider>,
   document.getElementById('root')
 );

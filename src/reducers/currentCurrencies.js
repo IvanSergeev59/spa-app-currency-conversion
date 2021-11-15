@@ -1,69 +1,80 @@
-const onChangeCurrency = (state, currency) => {   
-    if (currency.payload === "USD") {
-        return {
-            ...state.currentCurrencies,
-            userCurrency: currency.payload,
-            exchangeCurrency_1: 'EURO',
-            exchangeCurrency_2: "RUB",
-            userSumInputMoney_1: state.currentCurrencies.total*state.currentCurrencies.currentUsdToEuro,
-            userSumInputMoney_2: state.currentCurrencies.total*state.currentCurrencies.currentUsdToRub
+const onChangeCurrency = (state, currency) => { 
+
+    const  {rubToUsd,euroToRub,total, usdToEuro, euroToUsd,
+        usdToRub,  rubToEuro} = state.currentCurrencies
+        
+        // update exchange rates
+    const changeCurrency = (exchangeCurrency_1, exchangeCurrency_2,
+        exchangeCurrency_1_value,exchangeCurrency_2_value,userSumInputMoney_1,userSumInputMoney_2 ) => {
+             return {exchangeCurrency_1, exchangeCurrency_2, exchangeCurrency_1_value,
+                exchangeCurrency_2_value,userSumInputMoney_1,  userSumInputMoney_2}
+         }
+
+    const chooseChangeCurrency = () => {
+        if (currency.payload === "USD") {
+            const currentParams =  changeCurrency('EURO', "RUB", usdToEuro, usdToRub,
+            (total*usdToEuro).toFixed(4),
+            (total*usdToRub).toFixed(4)) 
+            return {currentParams}
+        } 
+        else if (currency.payload === "EURO") {
+            const currentParams =  changeCurrency('USD', "RUB", euroToUsd, euroToRub,
+            (total*euroToUsd).toFixed(4),
+            (total*euroToRub).toFixed(4))
+            return {currentParams}
+        }
+        else {
+            const currentParams =  changeCurrency('USD', "EUR", rubToUsd, rubToEuro,
+            (total*rubToUsd).toFixed(4),
+            (total*rubToEuro).toFixed(4))
+            return {currentParams}
             
         }
-    } 
-    else if (currency.payload === "EURO") {
-        return {
-            ...state.currentCurrencies,
-            userCurrency: currency.payload,
-            exchangeCurrency_1: 'USD',
-            exchangeCurrency_2: "RUB",
-            userSumInputMoney_1: state.currentCurrencies.total*state.currentCurrencies.currentEuroToUsd,
-            userSumInputMoney_2: state.currentCurrencies.total*state.currentCurrencies.currentEuroToRub
-        }
+    }  
+    return {
+        ...state.currentCurrencies,
+        userCurrency: currency.payload,
+        ...chooseChangeCurrency().currentParams
     }
-    else {
-        return {
-            ...state.currentCurrencies,
-            userCurrency: currency.payload,
-            exchangeCurrency_1: 'USD',
-            exchangeCurrency_2: "EUR",
-            userSumInputMoney_1: state.currentCurrencies.total*state.currentCurrencies.currentRubToUsd,
-            userSumInputMoney_2: state.currentCurrencies.total*state.currentCurrencies.currentRubToEuro
-        }
-    }
-    
 }
 
 const calculateUserInputMoney = (state, action) => {
-    const {userCurrency, currentUsdToRub, currentUsdToEuro, currentEuroToRub,
-         currentEuroToUsd, currentRubToEuro, currentRubToUsd} = state.currentCurrencies
-    if (/^(0|[1-9]\d*)$/.test(action.payload) & (action.payload >=0)) {    
-        if (userCurrency === "USD")    {
-            return {
-                ...state.currentCurrencies,
-                userSumInputMoney_1: action.payload*currentUsdToEuro,
-                userSumInputMoney_2: action.payload*currentUsdToRub,
-                total:action.payload,
-                errorUserWrongInput: ' '
-            } 
+    const {userCurrency, usdToRub, usdToEuro, euroToRub,
+         euroToUsd, rubToEuro, rubToUsd} = state.currentCurrencies;
+    const calculateOfUserCurrency = (a,b,c,d) => {
+        return {
+            userSumInputMoney_1: a,
+            userSumInputMoney_2: b,
+            total: c,
+            errorUserWrongInput: d
         }
-        else if (userCurrency === "EURO") {
-            return {
-                ...state.currentCurrencies,
-                userSumInputMoney_1: action.payload*currentEuroToUsd,
-                userSumInputMoney_2: action.payload*currentEuroToRub,
-                total: action.payload,
-                errorUserWrongInput: ' '
+    }
+    // validation user inputs
+    if (/^(0|[1-9]\d*)$/.test(action.payload) & (action.payload >=0)) {  
+        const withCalculateOfUserCurrency = (userCurrency)  => { 
+            if (userCurrency === "USD")    {
+                const onCalculateOfUserCurrency = calculateOfUserCurrency((action.payload*usdToEuro).toFixed(4), (action.payload*usdToRub).toFixed(4),
+                action.payload, ' ')
+                return {onCalculateOfUserCurrency} 
             }
-        }   
-        else {
-            return {
-                ...state.currentCurrencies,
-                userSumInputMoney_1: action.payload*currentRubToUsd,
-                userSumInputMoney_2: action.payload*currentRubToEuro,
-                total: action.payload,
-                errorUserWrongInput: ' '
-            } 
-        }  
+            else if (userCurrency === "EURO") {
+                console.log(action.payload, euroToUsd)
+                const onCalculateOfUserCurrency = calculateOfUserCurrency((action.payload*euroToUsd).toFixed(4),
+                (action.payload*euroToRub).toFixed(4),
+                action.payload, ' ')
+                return { onCalculateOfUserCurrency}
+            }   
+            else {
+                const onCalculateOfUserCurrency = calculateOfUserCurrency((action.payload*rubToUsd).toFixed(4),
+                (action.payload*rubToEuro).toFixed(4),
+                action.payload, ' ')
+                return {onCalculateOfUserCurrency} 
+            }  
+        }
+        return {
+            ...state.currentCurrencies,
+            ...withCalculateOfUserCurrency(userCurrency).onCalculateOfUserCurrency
+        }
     } else {
         return {
             ...state.currentCurrencies,
@@ -76,17 +87,15 @@ const calculateUserInputMoney = (state, action) => {
 }
 
 
-
-const updateCurrentCurrencies = (state , action) => {
-    
+const updateCurrentCurrencies = (state , action) => {    
     if (state === undefined) {
         return {
-                currentUsdToRub:'70',
-                currentUsdToEuro:'0',
-                currentEuroToRub:'70',
-                currentEurotoUsd:'0',
-                currentRubToEuro:'70',
-                currentRubToUsd:'0',                
+                usdToRub:'70',
+                usdToEuro:'0',
+                euroToRub:'70',
+                euroToUsd:'0',
+                rubToEuro:'70',
+                rubToUsd:'0',                
                 userSumInputMoney_1: '0',
                 userSumInputMoney_2: '0',
                 userCurrency: 'USD',
@@ -95,27 +104,30 @@ const updateCurrentCurrencies = (state , action) => {
                 total: '0',
                 errorUserWrongInput: ' '
         }
-    }
- 
+    } 
 
     switch (action.type) {
+        // user input money and calc it on current exchange rate
         case 'SUM_TOTAL':                   
             return calculateUserInputMoney(state, action)
 
+        // user change default currency
         case 'CHANGE_CURRENCY':           
-            return onChangeCurrency(state, action)
-            
-
+            return onChangeCurrency(state, action)            
+        // current currency exchange rates loading firstly or update
         case 'UPDATE_CURRENCY':
-            const {currentUsdToRub, currentEuroToRub} = action.payload;
-            const currentUsdToEuro = currentUsdToRub/currentEuroToRub;
-            const currentEuroToUsd = currentEuroToRub/currentUsdToRub;          
-            const currentRubToEuro = 1/currentEuroToRub;
-            const currentRubToUsd = 1/currentUsdToRub;
             return {
                 ...state.currentCurrencies,
-                currentUsdToRub, currentUsdToEuro, currentEuroToRub,
-                currentEuroToUsd, currentRubToEuro, currentRubToUsd                              
+                ...action.payload,            
+                exchangeCurrency_1_value: action.payload.usdToEuro,
+                exchangeCurrency_2_value: action.payload.usdToRub                            
+            }
+        // spinner while current currency exchange rates loading
+        case 'CURRENCIES_REQUESTED':
+            return {
+                ...state.currentCurrencies,
+                exchangeCurrency_1_value: 'Загрузка',
+                exchangeCurrency_2_value: 'Загрузка'
             }
         default: return state.currentCurrencies
     }
