@@ -6,7 +6,7 @@ import { sumTotal } from "../../actions";
 import store from "../../store";
 
 
-const CurrencyList = ( {sumTotalUsd, userSumInputMoney, userCurrency, exchangeCurrency_1, exchangeCurrency_2, userSumInputMoney_1, userSumInputMoney_2}) => {     
+const CurrencyList = ( {sumTotalUsd, errorUserWrongInput, userSumInputMoney, userCurrency, exchangeCurrency_1, exchangeCurrency_2, userSumInputMoney_1, userSumInputMoney_2}) => {     
        
     const insertTotal = (event) => {       
         const item =event.target.value;
@@ -16,12 +16,13 @@ const CurrencyList = ( {sumTotalUsd, userSumInputMoney, userCurrency, exchangeCu
     return (     
         <div className="currency-list">
             <div className="form" >
-                <Form.Group className="mb-3">
+                <Form.Group className="currency-list-margin">
                     <Form.Label>Количество</Form.Label>                   
                     <Form.Control
-                    onChange={insertTotal} id="1" type="number" placeholder="Введите количество" />
+                    onChange={insertTotal} id="only_num" type="number" placeholder="Введите количество" />
                    
                 </Form.Group>
+            <p className="currency-list__error">{errorUserWrongInput}</p>
             <p className="result-block">{userCurrency} in {exchangeCurrency_1}:</p>
             <p className="result-field">{userSumInputMoney_1}</p>                
             </div>
@@ -35,20 +36,20 @@ class CurrencyListContainer extends Component {
    
     render () {   
      
-        const {sumTotalUsd,  userCurrency, exchangeCurrency_1, exchangeCurrency_2, userSumInputMoney_1, userSumInputMoney_2} = this.props
+        const {sumTotalUsd,  userCurrency, exchangeCurrency_1, exchangeCurrency_2, userSumInputMoney_1, errorUserWrongInput, userSumInputMoney_2} = this.props
        
         return (                
-                <CurrencyList sumTotalUsd={sumTotalUsd} 
+                <CurrencyList sumTotalUsd={sumTotalUsd} errorUserWrongInput={errorUserWrongInput}
                 exchangeCurrency_1={exchangeCurrency_1} exchangeCurrency_2={exchangeCurrency_2} userCurrency={userCurrency}
                 userSumInputMoney_1={userSumInputMoney_1} userSumInputMoney_2={userSumInputMoney_2}/>           
         )
     }
 }
 
-const mapStateToProps = ({currentCurrencies: {userSumInputMoney_1, userSumInputMoney_2, userCurrency, exchangeCurrency_1
+const mapStateToProps = ({currentCurrencies: {errorUserWrongInput, userSumInputMoney_1, userSumInputMoney_2, userCurrency, exchangeCurrency_1
 , exchangeCurrency_2}}) => {
     
-    return {userSumInputMoney_1, userSumInputMoney_2, userCurrency, exchangeCurrency_1, exchangeCurrency_2}
+    return {userSumInputMoney_1, userSumInputMoney_2, errorUserWrongInput, userCurrency, exchangeCurrency_1, exchangeCurrency_2}
 } 
 
 const mapDispatchToProps = (dispatch, action) => {

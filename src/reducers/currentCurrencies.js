@@ -36,32 +36,45 @@ const onChangeCurrency = (state, currency) => {
 const calculateUserInputMoney = (state, action) => {
     const {userCurrency, currentUsdToRub, currentUsdToEuro, currentEuroToRub,
          currentEuroToUsd, currentRubToEuro, currentRubToUsd} = state.currentCurrencies
-  
-    if (userCurrency === "USD")    {
-        return {
-            ...state.currentCurrencies,
-            userSumInputMoney_1: action.payload*currentUsdToEuro,
-            userSumInputMoney_2: action.payload*currentUsdToRub,
-            total:action.payload
-        } 
-    }
-    else if (userCurrency === "EURO") {
-        return {
-            ...state.currentCurrencies,
-            userSumInputMoney_1: action.payload*currentEuroToUsd,
-            userSumInputMoney_2: action.payload*currentEuroToRub,
-            total: action.payload
+    if (/^(0|[1-9]\d*)$/.test(action.payload) & (action.payload >=0)) {    
+        if (userCurrency === "USD")    {
+            return {
+                ...state.currentCurrencies,
+                userSumInputMoney_1: action.payload*currentUsdToEuro,
+                userSumInputMoney_2: action.payload*currentUsdToRub,
+                total:action.payload,
+                errorUserWrongInput: ' '
+            } 
         }
-    }   
-    else {
+        else if (userCurrency === "EURO") {
+            return {
+                ...state.currentCurrencies,
+                userSumInputMoney_1: action.payload*currentEuroToUsd,
+                userSumInputMoney_2: action.payload*currentEuroToRub,
+                total: action.payload,
+                errorUserWrongInput: ' '
+            }
+        }   
+        else {
+            return {
+                ...state.currentCurrencies,
+                userSumInputMoney_1: action.payload*currentRubToUsd,
+                userSumInputMoney_2: action.payload*currentRubToEuro,
+                total: action.payload,
+                errorUserWrongInput: ' '
+            } 
+        }  
+    } else {
         return {
             ...state.currentCurrencies,
-            userSumInputMoney_1: action.payload*currentRubToUsd,
-            userSumInputMoney_2: action.payload*currentRubToEuro,
-            total: action.payload
-        } 
-    }  
+            userSumInputMoney_1: 0,
+            userSumInputMoney_2: 0,
+            total: 0,
+            errorUserWrongInput: 'Неверное значение'
+            } 
+        }
 }
+
 
 
 const updateCurrentCurrencies = (state , action) => {
@@ -79,7 +92,8 @@ const updateCurrentCurrencies = (state , action) => {
                 userCurrency: 'USD',
                 exchangeCurrency_1: "EURO",
                 exchangeCurrency_2: 'RUB',
-                total: '0'
+                total: '0',
+                errorUserWrongInput: ' '
         }
     }
  

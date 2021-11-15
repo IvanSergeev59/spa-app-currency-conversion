@@ -37,6 +37,13 @@
     margin-right: 10px;
 }
 
+.currency-list__error {
+    color:red;
+    font-size: 1rem;
+}
+.currency-list-margin {
+    margin-bottom: 0px;
+}
 @media (max-width: 768px) {
     .form-control {
         width: 50%;
