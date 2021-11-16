@@ -1,13 +1,17 @@
 import {React, Component} from "react";
 import { Form } from "react-bootstrap";
 import { connect } from "react-redux";
-import { changeCurrency} from "../../actions";
+import { changeCurrency, currenciesHideDefaultCurrencies} from "../../actions";
 
 
 
- const UserCurrency = ({userChangeCurrency}) => {     
+ const UserCurrency = ({userChangeCurrency, hideDefaultCurrencies}) => {  
+     const ololo =() => {
+         return hideDefaultCurrencies()
+     }   
     const onUserChangeCurrency = (event) => {
-        const item = event.target.value;        
+        const item = event.target.value;  
+        ololo()      
         return userChangeCurrency(item)
     }
         return (
@@ -26,11 +30,10 @@ import { changeCurrency} from "../../actions";
 
 
 class UserCurrencyContainer extends Component  {
-    
     render () {
-        const {userChangeCurrency} = this.props
+        const {userChangeCurrency, hideDefaultCurrencies} = this.props
         return (
-        <UserCurrency userChangeCurrency={userChangeCurrency}/>
+        <UserCurrency userChangeCurrency={userChangeCurrency} hideDefaultCurrencies={hideDefaultCurrencies}/>
         )
     }
 }
@@ -41,7 +44,8 @@ const mapStateToProps = ({userChangeCurrency}) => {
 
 const mapDispatchToProps = (dispatch, action) => {
     return {       
-        userChangeCurrency: (item) => dispatch(changeCurrency(item))
+        userChangeCurrency: (item) => dispatch(changeCurrency(item)),
+        hideDefaultCurrencies: () => dispatch(currenciesHideDefaultCurrencies())
     }
 }
 

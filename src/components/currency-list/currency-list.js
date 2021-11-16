@@ -6,15 +6,17 @@ import { sumTotal} from "../../actions";
 
 
 
-const CurrencyList = ( {sumTotalUsd, currentCurrencies}) => {     
-    const {errorUserWrongInput,exchangeCurrency_1, 
-        userCurrency, exchangeCurrency_2, userSumInputMoney_2, userSumInputMoney_1 } = currentCurrencies
- 
+const CurrencyList = ( {sumTotalUsd, state }) => {       
+    const {exchangeCurrency_1, userCurrency, exchangeCurrency_2, 
+        userSumInputMoney_2, userSumInputMoney_1, 
+        errorUserWrongInput } = state.calculations
+    console.log(state)
     const insertTotal = (event) => {       
         const item =event.target.value;
         
         return sumTotalUsd(item)
     }
+
     return (     
         <div className="currency-list">
             <div className="form" >
@@ -35,18 +37,19 @@ const CurrencyList = ( {sumTotalUsd, currentCurrencies}) => {
 }
 
 class CurrencyListContainer extends Component {      
-  
+    
     render () {   
      
-        const {sumTotalUsd, currentCurrencies} = this.props
+        const {sumTotalUsd, state} = this.props
         return (                
-                <CurrencyList sumTotalUsd={sumTotalUsd} currentCurrencies={currentCurrencies}/>           
+                <CurrencyList sumTotalUsd={sumTotalUsd} state={state}/>           
         )
     }
 }
 
-const mapStateToProps = ({currentCurrencies}) => {
-    return {currentCurrencies}
+const mapStateToProps = ( state) => {
+    
+    return {state}
 } 
 
 const mapDispatchToProps = (dispatch) => {

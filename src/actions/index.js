@@ -4,6 +4,18 @@ const currenciesRequested = () => {
     }
 }
 
+const currenciesLoaded = (item) => {
+    return {
+        type: 'CURRENCIES_LOADED',
+        payload: item
+    }
+}
+
+const currenciesHideDefaultCurrencies = () => {
+    return {
+        type: 'HIDE_DEFAULT_CURRENCIES'
+    }
+}
 const sumTotal = (item) => {
     return {
         type: 'SUM_TOTAL',
@@ -29,8 +41,9 @@ const updateCurrency = (item) => {
 const fetchCurrencies = (currencyService) => () => (dispatch) => {  
     dispatch(currenciesRequested());
     currencyService.getCurrencies()
-    .then((data) => dispatch(updateCurrency(data)))
-    .catch()
+    .then((data) => dispatch(currenciesLoaded(data)))
+    .catch();
+    
 }
 
-export {sumTotal, changeCurrency, updateCurrency, fetchCurrencies}
+export {sumTotal, changeCurrency, updateCurrency, currenciesHideDefaultCurrencies, fetchCurrencies, currenciesLoaded}
