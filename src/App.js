@@ -12,14 +12,6 @@ class App  extends Component {
   componentDidMount() {
     this.props.fetchCurrencies()
   }
-
-  // loadingCurrentCurrency = () => {
-  //   this.currencyService
-  //   .getCurrencies()
-  //   .then(this.props.onLoadCurrentCurrency)
-  //   .catch()
-  // }
-
   render () {
     return (
       <div className="App">        
@@ -36,15 +28,7 @@ class App  extends Component {
   
   }
 }
-// const mapStateToProps = (state) => {
-//   return state
-// } 
 
-// const mapDispatchToProps = (dispatch, action) => {
-//   return {
-//     onLoadCurrentCurrency: (item) => dispatch(updateCurrency(item))
-//   }
-// }
 
 const mapStateToProps = (state) => {
   return state

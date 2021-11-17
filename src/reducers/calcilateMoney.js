@@ -48,7 +48,7 @@ const calculateUserInputMoney = (state, action) => {
         }
 }
 
-const onChangeCurrency = (state, currency) => { 
+const onChangeCurrency = (state, currency) => {                         
     const  {rubToUsd,euroToRub, usdToEuro, euroToUsd,
         usdToRub,  rubToEuro} = state.currentCurrencies;
         

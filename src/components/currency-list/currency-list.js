@@ -10,7 +10,6 @@ const CurrencyList = ( {sumTotalUsd, state }) => {
     const {exchangeCurrency_1, userCurrency, exchangeCurrency_2, 
         userSumInputMoney_2, userSumInputMoney_1, 
         errorUserWrongInput } = state.calculations
-    console.log(state)
     const insertTotal = (event) => {       
         const item =event.target.value;
         
