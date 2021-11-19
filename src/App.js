@@ -7,14 +7,16 @@ import withCurrencyService from "./hoc";
 import { connect } from "react-redux";
 import compose from "./utils.js";
 import { fetchCurrencies } from "./actions";
+import { BrowserRouter as Router} from "react-router-dom";
 
-class App  extends Component {
+export class App  extends Component {
   componentDidMount() {
     this.props.fetchCurrencies()
   }
   render () {
     return (
-      <div className="App">        
+      <div className="App">  
+        <Router>      
           <Header />
           <UserCurrencyContainer />
           <Routes>
@@ -22,7 +24,7 @@ class App  extends Component {
             <Route path="/*" element={<HomePage />} />
             <Route path="/current-exchange-rate/" element={<CurrentCurrencies />} />  
           </Routes>
-
+          </Router>
       </div>
     );
   

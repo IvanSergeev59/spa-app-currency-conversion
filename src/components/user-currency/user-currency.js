@@ -29,7 +29,7 @@ import { changeCurrency, currenciesHideDefaultCurrencies} from "../../actions";
    }
 
 
-class UserCurrencyContainer extends Component  {
+export class UserCurrencyContainer extends Component  {
     render () {
         const {userChangeCurrency, hideDefaultCurrencies} = this.props
         return (

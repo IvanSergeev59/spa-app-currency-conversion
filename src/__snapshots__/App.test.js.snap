@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+<DocumentFragment>
+  <div
+    class="currency-list currency-list-user"
+  >
+    <p
+      class="currency-list-_p"
+    >
+      Ваша валюта:
+    </p>
+    <select
+      aria-label="Default select example"
+      class="form-select"
+    >
+      <option
+        value="USD"
+      >
+        USD
+      </option>
+      <option
+        value="EURO"
+      >
+        EURO
+      </option>
+      <option
+        value="RUB"
+      >
+        RUB
+      </option>
+    </select>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`UserCurrencyContainer snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="currency-list currency-list-user"
+  >
+    <p
+      class="currency-list-_p"
+    >
+      Ваша валюта:
+    </p>
+    <select
+      aria-label="Default select example"
+      class="form-select"
+    >
+      <option
+        value="USD"
+      >
+        USD
+      </option>
+      <option
+        value="EURO"
+      >
+        EURO
+      </option>
+      <option
+        value="RUB"
+      >
+        RUB
+      </option>
+    </select>
+  </div>
+</DocumentFragment>
+`;

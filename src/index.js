@@ -13,9 +13,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ErrorBoundry>
       <CurrencyServiceProvider value={currencyService}>
-        <Router>
           <App />
-        </Router>
       </CurrencyServiceProvider>
     </ErrorBoundry>
   </Provider>,

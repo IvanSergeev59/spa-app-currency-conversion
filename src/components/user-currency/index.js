@@ -1,3 +1,3 @@
-import UserCurrency from "./user-currency";
+import UserCurrencyContainer from "./user-currency";
 
-export default UserCurrency
+export default UserCurrencyContainer
