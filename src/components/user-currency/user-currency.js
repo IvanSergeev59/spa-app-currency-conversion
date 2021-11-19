@@ -6,12 +6,12 @@ import { changeCurrency, currenciesHideDefaultCurrencies} from "../../actions";
 
 
  const UserCurrency = ({userChangeCurrency, hideDefaultCurrencies}) => {  
-     const ololo =() => {
+     const hideDefaultCurrency =() => {
          return hideDefaultCurrencies()
      }   
     const onUserChangeCurrency = (event) => {
         const item = event.target.value;  
-        ololo()      
+        hideDefaultCurrency()      
         return userChangeCurrency(item)
     }
         return (
